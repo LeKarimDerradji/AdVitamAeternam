@@ -14,11 +14,13 @@ We turn your poetry, songs, writings, the product of your tortured soul, into a 
 
 - And may we give back some dignity to the ones that translate Zeitgeists into understanable words. 
 
+
+
+![cigare](https://i.kym-cdn.com/entries/icons/facebook/000/032/824/selfie.jpg)
+
 “In this there is no measuring with time, a year doesn’t matter, and ten years are nothing. Being an artist means: not numbering and counting, but ripening like a tree, which doesn’t force its sap, and stands confidently in the storms of spring, not afraid that afterward summer may not come. It does come. But it comes only to those who are patient, who are there as if eternity lay before them, so unconcernedly silent and vast. I learn it every day of my life, learn it with pain I am grateful for: patience is everything!”
 
 ― Rainer Maria Rilke, Letters to a Young Poet
-
-![cigare](https://i.kym-cdn.com/entries/icons/facebook/000/032/824/selfie.jpg)
 
 
 ### Text to Process :
