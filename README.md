@@ -23,4 +23,4 @@ We turn your poetry, songs, writings, the product of your tortured soul, into a 
 ― Rainer Maria Rilke, Letters to a Young Poet
 
 
-### Text to Process :
+### User Guide :
