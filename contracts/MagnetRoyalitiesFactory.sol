@@ -8,9 +8,17 @@ pragma solidity ^0.8.5;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
+import "./MagnetRoyalities.sol";
 
 contract LicenseFactory is AccessControl {
 
     using Address for address payable;
-     
+    
+    MagnetRoyalities private _magnetroyalities;
+
+       constructor() {
+        _magnetroyalities = new MagnetRoyalities();
+    }
+
+
 }
