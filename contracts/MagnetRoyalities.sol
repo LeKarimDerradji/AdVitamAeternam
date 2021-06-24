@@ -18,6 +18,8 @@ contract MagnetRoyalities is AccessControl, ERC721 {
     struct Copyright {
         address author;
         bytes32 textHash;
+        string name;
+        string lastName;
         string certificateURI;
     }
 
@@ -31,11 +33,11 @@ contract MagnetRoyalities is AccessControl, ERC721 {
         return super.supportsInterface(interfaceId);
     }
 
-    function authenticitate(address author, bytes32 textHash, string memory certificateURI) public onlyRole(MINTER_ROLE) returns(uint256) {
+    function authenticitate(address author, bytes32 textHash, string memory name, string memory lastName, string memory certificateURI) public onlyRole(MINTER_ROLE) returns(uint256) {
           uint256 tokenId = _copyrightId.current();
           _mint(author, tokenId);
           _copyrightId.increment();
-          _copyrights[tokenId] = Copyright(author, textHash, certificateURI);
+          _copyrights[tokenId] = Copyright(author, textHash, name, lastName, certificateURI);
           return tokenId;
     }
 }
