@@ -60,7 +60,7 @@ contract Aeternam is AccessControl, ERC721Enumerable, ERC721URIStorage {
     // Cette fonction est utilisée par tokenURI pour retourner une url complète.
     // En fonction de l'item id (et pas du NFT id), nous aurons une url pour chacun de nos loots
     function _baseURI() internal view virtual override(ERC721) returns (string memory) {
-        return "https://dweb.link/ipfs/";
+        return "ipfs://";
     }
 
      // Il existe 2 définitions de _beforeTokenTransfer, il faut aider le compilateur à gérer ce conflit.

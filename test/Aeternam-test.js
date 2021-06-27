@@ -104,7 +104,7 @@ describe('MagnetRights', function () {
       });
       it('Should return the URI for the token minted', async function () {
         uri = await aeternam.tokenURI(1)
-        expect(uri).to.equal('https://dweb.link/ipfs/00000000000000000000000000');
+        expect(uri).to.equal('ipfs://00000000000000000000000000');
       });
     });
   });
