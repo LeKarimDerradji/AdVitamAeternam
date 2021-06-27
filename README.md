@@ -1,8 +1,4 @@
-##  MAGNET_ROYALITIES
-
-*"I'm literally the smartest programmer that is ever lived"*
-
-https://www.youtube.com/watch?v=Rerb3tFKwXg 
+##  Ad Vitam Aeternam
 
 We turn your poetry, songs, writings, the product of your tortured soul, into a unique NFT that will forever attest of the unicity of your work as a Writer.
 
