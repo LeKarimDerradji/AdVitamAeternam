@@ -29,12 +29,13 @@ contract AdVitamAeternam is Ownable {
     function immortalize(
         bytes32 textHash, 
         address author, 
+        string memory content,
         string memory name, 
-        string memory lastName, 
+        string memory lastName,  
         string memory certificateURI) 
         public payable {
-        require(msg.value > (1 ether / 2), "AdVitamAeternam: you need to send 1 ether to use that function");
-        _aeternam.immortalize(textHash, author, name, lastName, certificateURI);
+        require(msg.value > (1 ether / 2), "AdVitamAeternam: you need to send half of an ether to use that function");
+        _aeternam.immortalize(textHash, author, content, name, lastName, certificateURI);
         emit Authentification(msg.sender, name, lastName, certificateURI);
     }
 

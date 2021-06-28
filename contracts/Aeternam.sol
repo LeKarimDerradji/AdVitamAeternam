@@ -19,8 +19,9 @@ contract Aeternam is AccessControl, ERC721Enumerable, ERC721URIStorage {
     Counters.Counter private _lastwordId;
 
     struct LastWord {
-        address author;
         bytes32 textHash;
+        address author;
+        string content;
         string name;
         string lastName;
         string certificateURI;
@@ -36,6 +37,7 @@ contract Aeternam is AccessControl, ERC721Enumerable, ERC721URIStorage {
     function immortalize(
         bytes32 textHash,
         address author, 
+        string memory content, 
         string memory name, 
         string memory lastName, 
         string memory certificateURI) public onlyRole(MINTER_ROLE)
@@ -44,8 +46,12 @@ contract Aeternam is AccessControl, ERC721Enumerable, ERC721URIStorage {
                uint256 currentId = _lastwordId.current();
               _mint(author, currentId);
               _setTokenURI(currentId, certificateURI);
-              _lastwords[currentId] = LastWord(author, textHash, name, lastName, certificateURI);
+              _lastwords[currentId] = LastWord(textHash, author, content, name, lastName, certificateURI);
               return currentId;
+    }
+
+    function lastWordById(uint256 id) public view returns(LastWord memory) {
+        return _lastwords[id];
     }
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721Enumerable, ERC721, AccessControl) returns (bool) {
