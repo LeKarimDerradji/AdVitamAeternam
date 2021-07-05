@@ -2,7 +2,6 @@
 /* eslint-disable no-undef */
 
 const { expect } = require('chai');
-const { ethers } = require('hardhat');
 
 describe('MagnetRights', function () {
   let deployer, lambdaUser, lambdaUser2, AdVitamAeternam, advitamaeternam, Aeternam, aeternam;
@@ -13,7 +12,6 @@ describe('MagnetRights', function () {
   const CERTIFICATE_URI_1 = '00000000000000000000000000';
 
   const MINTER_ROLE = ethers.utils.id('MINTER_ROLE');
-  const COST = ethers.utils.parseEther('1');
   beforeEach(async function () {
     [deployer, lambdaUser, lambdaUser2] = await ethers.getSigners();
 
@@ -27,7 +25,7 @@ describe('MagnetRights', function () {
 
     const aeternamAddress = await advitamaeternam.aeternam();
 
-    aeternam = await Aeternam.attach(aeternamAddress);
+    aeternam = Aeternam.attach(aeternamAddress);
   });
   describe('AdVitamAeternam Deployement', async function () {
     it('Deployer should be owner', async function () {
@@ -46,14 +44,11 @@ describe('MagnetRights', function () {
     });
   });
   describe('Aeternam Deployment by proxy', async function () {
-    it('Should have name MagnetLicense', async function () {
-      expect(await aeternam.name()).to.equal('MagnetLicense');
+    it('Should have name Aeternam', async function () {
+      expect(await aeternam.name()).to.equal('Aeternam');
     });
-    it('Should have symbol MAGL', async function () {
-      expect(await aeternam.symbol()).to.equal('MAGL');
-    });
-    it('Should have name MagnetLicense', async function () {
-      expect(await aeternam.name()).to.equal('MagnetLicense');
+    it('Should have symbol AETER', async function () {
+      expect(await aeternam.symbol()).to.equal('AETER');
     });
     it('Should have a total supply of zero', async function () {
       expect(await aeternam.totalSupply()).to.equal(0);
@@ -67,20 +62,24 @@ describe('MagnetRights', function () {
           aeternam.connect(lambdaUser).immortalize(TEXT_HASHES_1, lambdaUser.address, NAME, LASTNAME, CERTIFICATE_URI_1)
         ).to.be.reverted;
       });
+      it("test", async function () {
+        await expect(
+          aeternam.connect(lambdaUser).immortalize(TEXT_HASHES_1, lambdaUser.address, NAME, LASTNAME, CERTIFICATE_URI_1)
+        ).to.be.reverted;
+      });
       it("Should mint an Aeternam if 'Immortalize' function is being called from AdVitamAeternam", async function () {
-        await expect(() =>
-          advitamaeternam
-            .connect(lambdaUser)
-            .immortalize(TEXT_HASHES_1, lambdaUser.address, NAME, LASTNAME, CERTIFICATE_URI_1, { value: COST })
-        ).to.changeTokenBalance(aeternam, lambdaUser, 1);
+        await
+        advitamaeternam
+          .connect(lambdaUser)
+          .immortalize(TEXT_HASHES_1, lambdaUser.address, TEXT_1, NAME, LASTNAME, CERTIFICATE_URI_1)
       });
     });
     describe('Aeternam Minting & Tracking', async function () {
       beforeEach(async function() {
-        await expect(() =>
+        await expect(() => 
           advitamaeternam
             .connect(lambdaUser)
-            .immortalize(TEXT_HASHES_1, lambdaUser.address, NAME, LASTNAME, CERTIFICATE_URI_1, { value: COST })
+            .immortalize(TEXT_HASHES_1, lambdaUser.address, TEXT_1, NAME, LASTNAME, CERTIFICATE_URI_1)
         ).to.changeTokenBalance(aeternam, lambdaUser, 1);
       });
       it('Should mint a token to a user', async function () {
@@ -97,7 +96,7 @@ describe('MagnetRights', function () {
         await expect(() =>
           advitamaeternam
             .connect(lambdaUser)
-            .immortalize(TEXT_HASHES_1, lambdaUser.address, NAME, LASTNAME, CERTIFICATE_URI_1, { value: COST })
+            .immortalize(TEXT_HASHES_1, lambdaUser.address, TEXT_1, NAME, LASTNAME, CERTIFICATE_URI_1)
         ).to.changeTokenBalance(aeternam, lambdaUser, 1);
         tokenByIndex = await aeternam.tokenByIndex(1)
         expect(tokenByIndex).to.equal(2);

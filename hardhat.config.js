@@ -11,7 +11,6 @@ const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY;
  */
 module.exports = {
   solidity: '0.8.6',
-  /*
   networks: {
     mainnet: {
       url: `https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}`,
@@ -34,7 +33,6 @@ module.exports = {
       accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
     },
   },
-  */
   docgen: {
     path: './docs',
     clear: true,

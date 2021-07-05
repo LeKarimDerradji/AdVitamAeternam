@@ -16,42 +16,40 @@ contract Aeternam is AccessControl, ERC721Enumerable, ERC721URIStorage {
 
     using Counters for Counters.Counter;
 
-    Counters.Counter private _lastwordId;
+    Counters.Counter private _tokenId;
 
-    struct LastWord {
+    struct TokenContent {
         bytes32 textHash;
         address author;
         string content;
         string name;
         string lastName;
-        string certificateURI;
     }
 
-    mapping(uint256 => LastWord) private _lastwords;
+    mapping(uint256 => TokenContent) private _tokenContent;
 
-    constructor() ERC721("MagnetLicense","MAGL") {
+    constructor() ERC721("Aeternam","AETER") {
         _setupRole(MINTER_ROLE, msg.sender);
     }
 
-    
     function immortalize(
         bytes32 textHash,
         address author, 
         string memory content, 
         string memory name, 
-        string memory lastName, 
-        string memory certificateURI) public onlyRole(MINTER_ROLE)
+        string memory lastName,
+        string memory uri) public onlyRole(MINTER_ROLE)
             returns(uint256) {
-               _lastwordId.increment();
-               uint256 currentId = _lastwordId.current();
+               _tokenId.increment();
+               uint256 currentId = _tokenId.current();
               _mint(author, currentId);
-              _setTokenURI(currentId, certificateURI);
-              _lastwords[currentId] = LastWord(textHash, author, content, name, lastName, certificateURI);
+              _setTokenURI(currentId, uri);
+              _tokenContent[currentId] = TokenContent(textHash, author, content, name, lastName);
               return currentId;
     }
 
-    function lastWordById(uint256 id) public view returns(LastWord memory) {
-        return _lastwords[id];
+    function aeternamById(uint256 id) public view returns(TokenContent memory) {
+        return _tokenContent[id];
     }
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721Enumerable, ERC721, AccessControl) returns (bool) {

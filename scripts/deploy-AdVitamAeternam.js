@@ -16,20 +16,21 @@ async function main() {
   console.log('Deploying contracts with the account:', deployer.address);
 
   // We get the contract to deploy
-  const MagnetRightsFactory = await hre.ethers.getContractFactory('MagnetRightsFactory');
-  const magnetrightsfactory = await MagnetRightsFactory.deploy();
+  const AdVitamAeternam = await hre.ethers.getContractFactory('AdVitamAeternam');
+
+  const advitamaeternam = await AdVitamAeternam.deploy();
+
+  
+
 
   // Attendre que le contrat soit réellement déployé, cad que la transaction de déploiement
   // soit incluse dans un bloc
-  await magnetrightsfactory.deployed();
+  await advitamaeternam.deployed();
 
-  MagnetRights = await ethers.utils.getContractAddress({
-    from: magnetrightsfactory.address,
-    nonce: await ethers.provider.getTransactionCount(magnetrightsfactory.address),
-  });
+  aeternamAddress = await advitamaeternam.aeternam();
 
-  await deployed('magnetrightsfactory', hre.network.name, magnetrightsfactory.address);
-  await deployed("Magnetrights", hre.network.name, MagnetRights);
+  await deployed('AdVitamAeternam', hre.network.name, advitamaeternam.address);
+  await deployed("Aeternam", hre.network.name, aeternamAddress);
   
 }
 
